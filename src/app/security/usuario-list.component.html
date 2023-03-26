@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <section>
+        <div class="container w-50">
+            <p>
+                <a class="btn btn-primary mt-5" [routerLink]="['/usuariodetalhe']">Adicionar Usuário</a>
+            </p>
+            <table class="table border table-hover" *ngIf="__usuarios">
+                <thead>
+                    <tr class="border bg-light">
+                        <th>Id</th>
+                        <th>Username</th>
+                        <th>Password</th>
+                    </tr>
+                </thead>    
+                    <tbody>
+                        <tr *ngFor="let usuario of __usuarios | paginate: { itemsPerPage: contador, currentPage: pag }" class="tabelahover" 
+                            [routerLink]="['/usuariodetalhe', usuario.id]">
+                            <td>{{ usuario.id }}</td>
+                            <td>{{ usuario.username }}</td>
+                            <td>{{ usuario.password }}</td>
+                        </tr>
+                    </tbody>
+            </table>
+            <div class="text-right">
+                <pagination-controls (pageChange)="pag = $event"></pagination-controls>
+            </div>  
+        </div>
+
+    </section>
+</body>
+</html>
